@@ -29,9 +29,9 @@
     <section class="socials">
       <h2>Офіційні ресурси Студради</h2>
       <ul>
-        <li> Telegram-канал: <a href="#">@sr_fti</a></li>
-        <li> Telegram-бот зворотного зв'язку: <a href="#">@fti_help_bot</a></li>
-        <li> Instagram: <a href="#">@fti_official</a></li>
+        <li> Telegram-канал: <a href="https://t.me/students_ipt" target="_blank">@students_ipt</a></li>
+        <li> Telegram-бот зворотного зв'язку: <a href="https://web.telegram.org/k/#@ipt_help_bot" target="_blank">@ipt_help_bot</a></li>
+        <li> Instagram: <a href="https://www.instagram.com/ipt_kpi/" target="_blank">@ipt_kpi</a></li>
       </ul>
     </section>
 
@@ -47,11 +47,54 @@
         <button type="submit">Надіслати</button>
       </form>
     </section>
+    <script>
+      const form = document.getElementById('tg-feedback-form');
+
+      const TELEGRAM_BOT_TOKEN = '9015164010:AAGY0yUhN7xGoTyhw2049pcXdEb8zt1lsYg';
+      const TELEGRAM_CHAT_ID = '611357860';
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('contact-name').value;
+        const message = document.getElementById('message').value;
+
+        const textToSend = 📝 <b>Нове звернення з сайту ФТІ!</b>\n\n👤 <b>Від:</b> ${ name } \n💬 <b>Повідомлення:</b>\n${ message };
+
+        const apiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+        // Відправляємо запит
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: textToSend,
+            parse_mode: 'HTML'
+          })
+        })
+          .then(response => {
+            if (response.ok) {
+              form.reset();
+              document.getElementById('success-msg').style.display = 'block';
+              setTimeout(() => {
+                document.getElementById('success-msg').style.display = 'none';
+              }, 5000);
+            } else {
+              alert("Помилка відправки. Спробуйте пізніше.");
+            }
+          })
+          .catch(error => {
+            console.error("Помилка:", error);
+            alert("Помилка відправки. Спробуйте пізніше.");
+          });
+      });
+    </script>
   </main>
 
   <footer>
     <p>&copy; 2026 Студрада НН ФТІ</p>
   </footer>
-
+git add contacts.html
 </body>
 </html>
