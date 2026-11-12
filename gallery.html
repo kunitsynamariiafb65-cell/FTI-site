@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Галерея | Студрада ФТІ</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
@@ -25,18 +26,60 @@
 
   <main>
     <h1>Галерея подій</h1>
-    <p>Фотозвіти з наших найкращих заходів, поїздок та ініціатив.</p>
+    <p><strong>Студентське життя — це значно більше, ніж пари та дедлайни.</strong></p>
+    <p>Це зустрічі, спонтанні пригоди, гучні вечори, командний дух і моменти, які хочеться переживати знову. Тут ми зібрали
+    частинки нашої спільної історії — від масштабних подій до маленьких митей, які роблять студентські роки особливими.</p>
+    <p>Гортай галерею та шукай себе серед цих моментів</p>
+<div class="gallery-grid">
+  <div class="gallery-item">
+    <a href="images/abitfest/1.jpg" class="glightbox" data-gallery="abitfest">
+      <img src="images/abitfest/1.jpg" alt="АбітFest">
+      <p>АбітFest</p>
+    </a>
+    <div id="abitfest-hidden" style="display: none;"></div>
+  </div>
 
-    <div class="gallery-grid">
-      <div class="gallery-item">[Фото з АбіFest (Плейсхолдер)]</div>
-      <div class="gallery-item">[Фото з Кіновечора (Плейсхолдер)]</div>
-      <div class="gallery-item">[Фото зі Спортивного змагання (Плейсхолдер)]</div>
-    </div>
+  <div class="gallery-item">
+    <a href="images/hellowin/1.jpg" class="glightbox" data-gallery="hellowin">
+      <img src="images/hellowin/1.jpg" alt="Хелловін">
+      <p>Хелловін </p>
+    </a>
+    <div id="hellowin-hidden" style="display: none;"></div>
+  </div>
+
+  <div class="gallery-item">
+    <a href="images/posvyata/1.jpg" class="glightbox" data-gallery="posvyata">
+      <img src="images/posvyata/1.jpg" alt="Посвята">
+      <p>Посвята </p>
+    </a>
+    <div id="posvyata-hidden" style="display: none;"></div>
+  </div>
+</div>
   </main>
 
   <footer>
     <p>&copy; 2026 Студрада НН ФТІ</p>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+  function addPhotosToAlbum(albumName, totalPhotos) {
+      const container = document.getElementById(albumName + '-hidden');
+      for (let i = 2; i <= totalPhotos; i++) {
+        const link = document.createElement('a');
+        link.href = `images/${albumName}/${i}.jpg`;
+        link.className = 'glightbox';
+        link.setAttribute('data-gallery', albumName);
+        link.setAttribute('data-type', 'image'); // явно вказуємо бібліотеці, що це фото
+        container.appendChild(link);
+      }
+    }
+
+    addPhotosToAlbum('abitfest', 27);
+    addPhotosToAlbum('hellowin', 32);
+    addPhotosToAlbum('posvyata', 13);
+
+    const lightbox = GLightbox();
+  </script>
 
 </body>
 </html>

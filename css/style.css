@@ -66,3 +66,36 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+/* Сітка для альбомів у галереї */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 картки в одному ряду */
+  gap: 20px;
+  /* відстань між картками */
+  margin-top: 30px;
+}
+
+/* Зменшуємо та вирівнюємо самі картинки-обкладинки */
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  /* обрізає фото рівно по рамці без розтягування облич */
+  border-radius: 10px;
+  display: block;
+}
+
+/* Підпис під обкладинкою */
+.gallery-item p {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+ /* Щоб на телефоні картки ставали одна під одною */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
